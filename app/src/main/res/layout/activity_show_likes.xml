@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+
+    tools:context="com.com.example.adiad.articulo.ShowLikes"
+    android:weightSum="1">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="AccessToken"
+            android:id="@+id/disp"
+            android:visibility="gone"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+    <pl.droidsonroids.gif.GifImageView
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:src="@drawable/gif2"
+        android:layout_weight="0.33" />
+
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Compute my likes..."
+            android:id="@+id/mera_button"
+            android:background="#953120"
+            android:textColor="@color/white"
+            />
+
+    <Button
+        android:id="@+id/feed_button"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+
+        android:background="#ea4c88"
+        android:text="Go to your feed..."
+        android:textColor="@color/white" />
+</LinearLayout>
