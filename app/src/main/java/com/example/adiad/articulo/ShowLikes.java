@@ -39,6 +39,8 @@ import java.util.List;
 
 
 public class ShowLikes extends AppCompatActivity {
+
+    PrefManager prefManager;
     public static String useit="";
     String enterainment[] = {"Enterainment","TV", "Series","Movie", "Show","Television","Play"};
     String news[] = {"News","Media", "Magazine"};
@@ -161,9 +163,14 @@ public class ShowLikes extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         currentAccessToken = (AccessToken) extras.get("currentAccessToken");
         disp = (TextView) findViewById(R.id.disp);
+
+
+
         merabutton=(Button)findViewById(R.id.mera_button);
         feed_button=(Button)findViewById(R.id.feed_button);
         queue = Volley.newRequestQueue(this);
+
+        prefManager=new PrefManager(this);
         pd = new ProgressDialog(this);
         pd.setMessage("loading");
         pd.show();
@@ -203,6 +210,13 @@ public class ShowLikes extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 useit = disp.getText().toString();
+
+// put percentage in shared preferences
+
+                prefManager.setPercentage(useit);
+
+
+                Toast.makeText(getApplicationContext(),useit,Toast.LENGTH_LONG).show();
                 new HttpAsyncTask().execute();
                 Toast.makeText(getBaseContext(), "Button pressed", Toast.LENGTH_SHORT).show();
             }
@@ -341,7 +355,7 @@ public class ShowLikes extends AppCompatActivity {
             HttpClient httpclient = new DefaultHttpClient();
 
             // 2. make POST request to the given URL
-            HttpPost httpPost = new HttpPost("http://192.168.43.164:5000/data");
+            HttpPost httpPost = new HttpPost("http://192.168.43.58:5000/data");
 
             String json = "";
 

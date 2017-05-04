@@ -25,10 +25,36 @@ import org.eazegraph.lib.models.PieModel;
 
 public class Statistics extends AppCompatActivity implements OnChartValueSelectedListener {
 
+    PrefManager prefManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistics);
+
+        prefManager=new PrefManager(this);
+
+        String percentage=prefManager.getPercentage();
+        String[] parts = percentage.split(",");
+        Log.e("parts",parts+" ");
+        //penterainment + ","+pmusic +","+ ppeople +","+ psports+","+pnews+ "," + pecomm+ ","+ peducation+","+phealth + ","+ pothers +"," + ptech);
+
+        float entertainment=Float.valueOf(parts[0]);
+        float people=Float.valueOf(parts[1]);
+        float sports=Float.valueOf(parts[2]);
+        float news=Float.valueOf(parts[3]);
+        float ecomm=Float.valueOf(parts[4]);
+        float education=Float.valueOf(parts[5]);
+        float health=Float.valueOf(parts[6]);
+        float others=Float.valueOf(parts[7]);
+        float tech=Float.valueOf(parts[8]);
+
+
+        float total=entertainment+people+sports+news+ecomm+education+health+others+tech;
+
+
+
+
 
         /* PieChart mPieChart = (PieChart) findViewById(R.id.piechart);
 
@@ -41,9 +67,16 @@ public class Statistics extends AppCompatActivity implements OnChartValueSelecte
         */
         //https://github.com/PhilJay/MPAndroidChart/wiki
         ArrayList<PieEntry> entries = new ArrayList<>();
-        entries.add(new PieEntry(4f, "First"));
-        entries.add(new PieEntry(8f, "Second"));
-        entries.add(new PieEntry(6f, "Thirs"));
+        entries.add(new PieEntry((entertainment*100)/total, "Entertainment"));
+        entries.add(new PieEntry((people*100)/total, "People"));
+        entries.add(new PieEntry((sports*100)/total, "Sports"));
+        entries.add(new PieEntry((news*100)/total, "News"));
+        entries.add(new PieEntry((ecomm*100)/total, "Ecommerce"));
+        entries.add(new PieEntry((education*100)/total, "Education"));
+        entries.add(new PieEntry((health*100)/total, "Health"));
+        entries.add(new PieEntry((others*100)/total, "Others"));
+        entries.add(new PieEntry((tech*100)/total, "Technology"));
+
 
         PieChart pieChart = (PieChart) findViewById(R.id.chart);
         PieDataSet dataset = new PieDataSet(entries, "Facebook Interests");
